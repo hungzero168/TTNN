@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai 2</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="js/scipts.js"></script>
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <div class="container">
+        <div class="button-container">
+            <button class="btn-add-input-field">Add input field</button>
+            <button class="btn-add-textarea-field">Add textarea field</button>
+            <button class="btn-add-button-field">Add button</button>
+            <button class="btn-save-form">Save & Create Form</button>
+            <button class="btn-reset-form">Reset</button>
+        </div>
+        <div class="form-container">
+            <div class="example-form">
+                <div class="form-field">
+                    <div class="form-field-header">
+                        <h4>Input Field</h4>
+                        <span class="close-button">X</span>
+                    </div>
+                    <div class="form-field-row">
+                        <label for="type">Type</label>
+                        <select id="type">
+                            <option value="text">text</option>
+                            <option value="number">number</option>
+                            <option value="date">date</option>
+                            <option value="time">time</option>
+                            <option value="datetime-local">datetime-local</option>
+                        </select>
+                    </div>
+                    <div class="form-field-row">
+                        <label for="label">Label</label>
+                        <input type="text" id="label">
+                    </div>
+                    <div class="form-field-row">
+                        <label for="name">Name</label>
+                        <input type="text" id="name">
+                    </div>
+                    <div class="form-field-row">
+                        <label for="id">Id</label>
+                        <input type="text" id="id">
+                    </div>
+                    <div class="form-field-row">
+                        <label for="placeholder">Placeholder</label>
+                        <input type="text" id="placeholder">
+                    </div>
+                    <div class="form-field-row checkbox">
+                        <label for="require">Require</label>
+                        <div>
+                            <input type="checkbox" id="require">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-textarea-field">
+                    <div class="form-field-header">
+                        <h4>Textarea Field</h4>
+                        <span class="close-button">X</span>
+                    </div>
+                    <div class="form-field-row">
+                        <label for="textarea-label">Label</label>
+                        <input type="text" id="textarea-label">
+                    </div>
+                    <div class="form-field-row">
+                        <label for="textarea-name">Name</label>
+                        <input type="text" id="textarea-name">
+                    </div>
+                    <div class="form-field-row">
+                        <label for="textarea-id">Id</label>
+                        <input type="text" id="textarea-id">
+                    </div>
+                    <div class="form-field-row">
+                        <label for="textarea-placeholder">Placeholder</label>
+                        <input type="text" id="textarea-placeholder">
+                    </div>
+                    <div class="form-field-row checkbox">
+                        <label for="textarea-require">Require</label>
+                        <div>
+                            <input type="checkbox" id="textarea-require">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-button-field">
+                    <div class="form-field-header">
+                        <h4>Button Field</h4>
+                        <span class="close-button">X</span>
+                    </div>
+                    <div class="form-field-row">
+                        <label for="button-label">Label</label>
+                        <input type="text" id="button-label">
+                    </div>
+                    <div class="form-field-row">
+                        <label for="button-name">Name</label>
+                        <input type="text" id="button-name">
+                    </div>
+                    <div class="form-field-row">
+                        <label for="button-id">Id</label>
+                        <input type="text" id="button-id">
+                    </div>
+                </div>
+            </div>
+            <div class="form-preview"></div>
+        </div>
+    </div>
+
+    <footer>
+    </footer>
+</body>
+
+</html>

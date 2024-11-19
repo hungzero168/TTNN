@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+
+</head>
+
+<body>
+    <main>
+        <div class="container_product ui segment">
+            <div class="product_manager">
+                <div class="ui grid">
+                    <div class="left floated eight wide column">
+                        <button class="ui primary button" id="addProductBtn">Add product</button>
+                        <button class="ui button" id="addPropertyBtn">Add property</button>
+                        <button class="ui button" id="syncVillaThemeBtn">Sync form VillaTheme</button>
+                    </div>
+                    <div class="right floated eight wide column">
+                        <div class="ui right aligned container">
+                            <div class="ui fluid input">
+                                <input type="text" placeholder="Search product..." id="searchProduct">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product_filter ui grid">
+                <div class="ui horizontal list full-width">
+
+                    <div class="item">
+                        <select name="Date" id="Date" class="ui compact selection dropdown left aligned">
+                            <option value="date">Date</option>
+                            <option value="name">Name</option>
+                            <option value="sku">SKU</option>
+                            <option value="price">Price</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <select name="Order" id="Order" class="ui compact selection dropdown left aligned">
+                            <option value="ASC">ASC</option>
+                            <option value="DESC">DESC</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <select name="Category" id="Category" class="ui compact selection dropdown left aligned" multiple>
+                            <option value="">Categories</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <select name="Tag" id="Tag" class="ui fluid selection dropdown left aligned" multiple>
+                            <option value="">Select Tag</option>
+                        </select>
+                    </div>
+                    
+                    <div class="item">
+                        <div class="ui input">
+                            <input type="date" name="create_date" id="create_date">
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="ui input">
+                            <input type="date" name="update_date" id="update_date">
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="ui input">
+                            <input type="text" name="price_from" id="price_from" placeholder="Price from">
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="ui input">
+                            <input type="text" name="price_to" id="price_to" placeholder="Price to">
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <button class="ui button" id="filterBtn">Filter</button>
+                    </div>
+
+                </div>
+
+                
+            </div>
+        </div>
+
+        <div class="product_list">
+            <div class="product_item">
+                <table class="ui celled table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Product name</th>
+                            <th>SKU</th>
+                            <th>Price</th>
+                            <th>Featured image</th>
+                            <th>Gallery</th>
+                            <th>Category</th>
+                            <th>Tag</th>
+                            <th>
+                                <div>
+                                    <div class="item">Action</div>
+                                    <div class="item"><i class="trash icon" id="deleteProductBtn"></i></div>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody">
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination_product ui centered grid">
+                <div class="pagination ui menu">
+                    <a class="item" href="#">
+                        <i class="arrow left icon"></i>
+                    </a>
+                    <a class="item active">1</a>
+                    <a class="item">2</a>
+                    <a class="item">3</a>
+                    <a class="item" href="#">
+                        <i class="arrow right icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popup Add Product -->
+        <div class="ui modal" id="addProductPopup">
+            <div class="header">Add Product</div>
+            <div class="content">
+                <form id="AddProductForm" class="ui form">
+                    <div class="field">
+                        <label>Product Name</label>
+                        <input type="text" name="product_name" placeholder="Enter product name" required>
+                    </div>
+                    <div class="field">
+                        <label>SKU</label>
+                        <input type="text" name="sku" placeholder="Enter SKU" required>
+                    </div>
+                    <div class="field">
+                        <label>Price</label>
+                        <input type="number" name="product_price" placeholder="Enter price" required>
+                    </div>
+                    <div class="field">
+                        <label>Featured Image</label>
+                        <input type="file" name="featured_image" accept="image/*" >
+                    </div>
+                    <div class="field">
+                        <label>Gallery Image</label>
+                        <input type="file" name="gallery_image" accept="image/*" >
+                    </div>
+
+                    <div class="field">
+                        <label for="AddProductCategory">Category</label>
+                        <select name="Category" id="AddProductCategory" class="ui fluid dropdown" multiple>
+                            <option value="">Select Category</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="AddProductTag">Tag</label>
+                        <select name="Tag" id="AddProductTag" class="ui fluid dropdown" multiple>
+                            <option value="">Select Tag</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="actions">
+                <button class="ui button" id="submitBtn" type="submit" form="AddProductForm">Submit</button>
+                <button class="ui button" id="cancelBtn">Cancel</button>
+            </div>
+        </div>
+
+        <div id="editProductPopup" class="ui modal">
+            <div class="header">Edit Product</div>
+            <div class="content">
+                <form id="EditProductForm" class="ui form">
+                    <input type="hidden" name="id" id="EditProductID">
+                    <div class="field">
+                        <label>Product Name</label>
+                        <input type="text" name="product_name" id="EditProductName" placeholder="Enter product name"
+                            required>
+                    </div>
+                    <div class="field">
+                        <label>SKU</label>
+                        <input type="text" name="sku" id="EditProductSKU" placeholder="Enter SKU" required>
+                    </div>
+                    <div class="field">
+                        <label>Price</label>
+                        <input type="number" step="0.01" name="product_price" id="EditProductPrice"
+                            placeholder="Enter price" >
+                    </div>
+
+                    <div class="field">
+                        <label>Sale Price</label>
+                        <input type="number" step="0.01" name="sale_price" id="EditProductSalePrice"
+                            placeholder="Enter sale price">
+                    </div>
+
+                    <div class="field">
+                        <label>Featured Image</label>
+                        <img id="EditProductFeaturedImagePreview" src="" alt="Featured Image">
+                        <input type="file" name="featured_image" id="EditProductFeaturedImage" accept="image/*">
+                    </div>
+
+                    <div class="field">
+                        <label>Gallery Image</label>
+                        <div id="EditProductGalleryPreview"></div>
+                        <input type="file" name="gallery_image" id="EditProductGalleryImage" accept="image/*">
+                    </div>
+
+                    <div class="field">
+                        <label>Category</label>
+                        <select name="category[]" id="EditProductCategory" class="ui fluid dropdown" multiple>
+                            <option value="">Select Category</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Tag</label>
+                        <select name="tag[]" id="EditProductTag" class="ui fluid dropdown" multiple>
+                            <option value="">Select Tag</option>
+                        </select>
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="actions">
+                <button class="ui button" id="submitEditBtn" type="submit" form="EditProductForm">Submit</button>
+                <button class="ui button" id="cancelEditBtn">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Popup Add Property(add category or tag ) -->
+        <div class="ui modal" id="addPropertyPopup">
+            <div class="header">Add Property</div>
+            <div class="content">
+                <form id="AddPropertyForm" class="ui form">
+                    <div class="field">
+                        <label>Property Type</label>
+                        <select name="property_type" id="propertyType" required>
+                            <option value="">Select Property Type</option>
+                            <option value="category">Category</option>
+                            <option value="tag">Tag</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Property Name</label>
+                        <input type="text" name="property_name" id="propertyName" placeholder="Enter property name"
+                            required>
+                    </div>
+                </form>
+            </div>
+            <div class="actions">
+                <button class="ui button" id="submitPropertyBtn">Submit</button>
+                <button class="ui button" id="cancelPropertyBtn">Cancel</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
